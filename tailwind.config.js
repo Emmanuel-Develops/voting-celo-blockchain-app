@@ -18,6 +18,13 @@ module.exports = {
     fontFamily: {
       'genos': ['Genos', 'sans-serif'],
       'mw': ['"Merriweather"', 'serif'],
+    },
+    extend: {
+      zIndex: {
+        '-1': '-1',
+        '-2': '-2',
+        '-3': '-3',
+      }
     }
   },
   variants: {

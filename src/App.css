@@ -1,12 +1,13 @@
+
+
 .moving-bg {
     outline: 2px solid green;
     width: calc(1* 3060px);
     background-image: url(./assets/images/bg-memoji.png);
     /* background-image: url(./assets/images/bg-memoji.png), linear-gradient(to right, rgba(0, 0, 255, 0.2) 30%, rgba(56, 56, 56, 0.5) 70%); */
     background-repeat: repeat-x;
-    animation: animatedBackground 30s linear infinite;
+    animation: animatedBackground 40s linear infinite;
     background-size: cover;
-    /* background-blend-mode: normal; */
     /* background-blend-mode: overlay; */
 }
 
@@ -18,6 +19,16 @@
     background-image: linear-gradient(315deg, rgba(10,10,10, 0.7) 20%, rgba(62, 62, 184, 0.5) 100%);
     opacity: 0.9;
     background-repeat: no-repeat;
+}
+
+/* .scroll-snap {
+    min-height: 100vh;
+    scroll-snap-type: y mandatory;
+} */
+
+.scroll-snap-child {
+    /* position: relative; */
+    scroll-snap-align: start;
 }
 
 @keyframes animatedBackground {
