@@ -5,11 +5,16 @@ import hand from '../assets/images/hand.png'
 
 const HomePage = () => {
 
+    const [scrollUp, setScrollUp] = useState('');
+    // const [pageHeight, setPageHeight] = useState(0)
+
     const homePage = useRef(null)
     const blockText = useRef(null)
-    console.log(homePage.scrollY)
+    const voteNow = useRef(null)
+    const handRef = useRef(null)
+
     
-    const testing = (e) => {
+    const clickScroll = (e) => {
         // e.preventDefault()
         // console.log(e.target.scrollTop)
         // console.log(document.body.scrollTop)
@@ -19,7 +24,21 @@ const HomePage = () => {
         blockText.current.scrollIntoView(true)
     }
 
-    // window.addEventListener('scroll', testing)
+    // (window.scrollY/scrollHeight) * 360
+
+    useEffect(() => {
+        // setPageHeight(voteNow.current.offsetTop)
+        const scrollHeight = voteNow.current.offsetTop
+        const testing = (pageHeight) => {
+            console.log('final', scrollHeight)
+            console.log('current', window.scrollY)
+            console.log(Math.round(window.scrollY/scrollHeight * 360), 'deg')
+            handRef.current.style.transform = `rotate(${Math.round(window.scrollY/scrollHeight * 180 - 180) || 0}deg)`
+            // handRef.current.style.transform = `rotate(90deg)`
+            // style={{transform: `rotate(${90}deg)`}}
+        }
+        window.addEventListener('scroll', testing)
+    }, [])
 
 
     return (
@@ -36,8 +55,8 @@ const HomePage = () => {
                     <p className="font-mw font-bold text-lg text-gray-400 mx-2">veto</p>
                 </div>
             </header>
-            <main className="w-full bg-black bg-opacity-40">
-                <div ref={blockText} className="h-screen scroll-snap-child">
+            <main ref={homePage} className="w-full bg-black bg-opacity-40">
+                <div ref={blockText} className="h-screen">
                     {/* <h1 className="font-genos text-3xl md:text-6xl sm:text-5xl font-bold text-yellow-400 tracking-wide uppercase md:w-10/12 2xl:w-8/12 px-6 lg:px-12">Welcome to Veto</h1> */}
                     <div className="relative bg-white my-30 block-text mt-40">
                         <div className="md:w-10/12 2xl:w-8/12 px-6 lg:px-12 py-8 mx-auto">
@@ -48,13 +67,13 @@ const HomePage = () => {
                             <h2 className="font-genos text-3xl md:text-4xl text-yellow-800 tracking-wide capitalize mt-5 lg:mt-10">why veto?</h2>
                             <p className="font-genos text-black-300 text-lg md:text-2xl pt-5">veto is a personal project to help solidify my knowledge on creating smart contracts.</p>
                         </div>
-                        <div className="fixed bouncy-hand lg:fixed w-12 md:w-24 top-1/2 right-10">
-                            <img src={hand} className="w-full" alt="illustration to scroll" />
+                        <div ref={handRef} onClick ={(e) => clickScroll(e)} style={{transform: `rotate(${-180}deg)`}} className="fixed cursor-pointer lg:fixed w-12 md:w-24 top-1/2 right-10">
+                            <img src={hand} className="w-full filter drop-shadow-lg bouncy-hand" alt="illustration to scroll" />
                         </div>
                     </div>
                 </div>
-                <div className="h-screen flex items-center justify-center scroll-snap-child">
-                    <button id="vote-now" onClick ={(e) => testing(e)} className="font-genos text-3xl tracking-wider text-gray-400 uppercase font-bold bg-blue-400 rounded mt-10 py-2 px-6 hover:bg-blue-600 transform hover:-translate-y-1">Vote</button>
+                <div ref={voteNow} className="h-screen flex items-center justify-center scroll-snap-child">
+                    <button id="vote-now" className="font-genos text-3xl tracking-wider text-gray-400 uppercase font-bold bg-blue-400 rounded mt-10 py-2 px-6 hover:bg-blue-600 transform hover:-translate-y-1">Vote</button>
                 </div>
                 
             </main>

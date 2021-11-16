@@ -33,14 +33,9 @@ html {
 } */
 
 .bouncy-hand {
-    transform: translateY(0) rotate(180deg) !important;
+    transform: rotate(-180deg) ;
     animation: bouncyHand 3s ease-in-out infinite;
 }
-
-/* .scroll-snap {
-    min-height: 100vh;
-    scroll-snap-type: y mandatory;
-} */
 
 .scroll-snap-child {
     /* position: relative; */
