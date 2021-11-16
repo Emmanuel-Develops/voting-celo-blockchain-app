@@ -9,11 +9,11 @@ module.exports = {
       'platinum' : '#e5e5e5',
     }),
     
-    textColor: {
-      'oxBlue' : '#14213d',
-      'orangeWeb' : '#fca311',
-      'platinum' : '#e5e5e5',
-    },
+    // textColor: {
+    //   'oxBlue' : '#14213d',
+    //   'orangeWeb' : '#fca311',
+    //   'platinum' : '#e5e5e5',
+    // },
 
     fontFamily: {
       'genos': ['Genos', 'sans-serif'],

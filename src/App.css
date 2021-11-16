@@ -1,4 +1,7 @@
-
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
 
 .moving-bg {
     outline: 2px solid green;
@@ -21,6 +24,19 @@
     background-repeat: no-repeat;
 }
 
+/* .block-text::before {
+    position: absolute;
+    content: "";
+    width: 100vw;
+    height: 100%;
+    background: #fff;
+} */
+
+.bouncy-hand {
+    transform: translateY(0) rotate(180deg) !important;
+    animation: bouncyHand 3s ease-in-out infinite;
+}
+
 /* .scroll-snap {
     min-height: 100vh;
     scroll-snap-type: y mandatory;
@@ -29,6 +45,18 @@
 .scroll-snap-child {
     /* position: relative; */
     scroll-snap-align: start;
+}
+
+@keyframes bouncyHand {
+    0% {
+        transform: translateY(0) ;
+    }
+    50% {
+        transform: translateY(10px) ;
+    } 
+    100% {
+        transform: translateY(0) ;
+    }
 }
 
 @keyframes animatedBackground {
