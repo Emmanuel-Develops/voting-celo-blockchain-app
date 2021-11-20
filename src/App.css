@@ -3,6 +3,10 @@ html {
     scroll-snap-type: y mandatory;
 }
 
+.splash-screen {
+    min-height: calc(100vh - 5rem);
+}
+
 .moving-bg {
     outline: 2px solid green;
     width: calc(1* 3060px);
@@ -19,18 +23,23 @@ html {
     content: "";
     width: 100vw;
     height: 100%;
-    background-image: linear-gradient(315deg, rgba(10,10,10, 0.7) 20%, rgba(62, 62, 184, 0.5) 100%);
-    opacity: 0.9;
+    background-image: linear-gradient(315deg, rgba(10,10,10, 1) 20%, rgba(42, 42, 124, 1) 100%);
+    opacity: 0.8;
     background-repeat: no-repeat;
 }
 
-/* .block-text::before {
-    position: absolute;
-    content: "";
-    width: 100vw;
-    height: 100%;
-    background: #fff;
-} */
+.transparent-text {
+    /* background: linear-gradient(145deg, rgb(236, 197, 146), rgb(120, 151, 153)); */
+    /* background: linear-gradient(145deg, #efefef, #cdcdcd); */
+    background-color: #eee;
+    /* -webkit-text-fill-color: transparent; */
+    mix-blend-mode: screen;
+    color: black;
+	box-shadow: 
+        0.05em 0.05em 0.1em rgb(120, 151, 153), 
+		-2px -2px 6px rgb(236, 197, 146);
+    /* animation: vetoFlick 3s linear infinite; */
+}
 
 .bouncy-hand {
     transform: rotate(-180deg) ;
@@ -40,6 +49,18 @@ html {
 .scroll-snap-child {
     /* position: relative; */
     scroll-snap-align: start;
+}
+
+@keyframes vetoFlick {
+    40% {
+        background: linear-gradient(145deg, rgb(236, 197, 146), rgb(120, 151, 153));
+    }
+    41% {
+        background: none;
+    }
+    50% {
+        background: linear-gradient(145deg, rgb(236, 197, 146), rgb(120, 151, 153));
+    }
 }
 
 @keyframes bouncyHand {
