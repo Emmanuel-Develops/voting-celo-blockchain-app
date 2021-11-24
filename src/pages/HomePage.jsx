@@ -93,8 +93,8 @@ const HomePage = () => {
                     <p className="font-mw font-bold text-lg text-gray-400 mx-2">veto</p>
                 </div>
             </header>
-            <main className="pt-20 w-full bg-black bg-opacity-40">
-                <div ref={splashScreen} className="splash-screen flex items-center justify-center outline-white">
+            <main className="w-full bg-black bg-opacity-40">
+                <div ref={splashScreen} className="pt-20 min-h-screen flex items-center justify-center">
                     <div className="grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-2 md:w-10/12 max-w-7xl py-8 px-4 md:px-0 mx-auto">
                         <div className="intro  md:col-span-2">
                         <span className='inline-block font-black my-2 px-3 py-1 text-3xl md:text-5xl lg:text-6xl rounded-xl transparent-text'>VETO</span>
@@ -103,14 +103,14 @@ const HomePage = () => {
                             </h2>
                         </div>
                         <div className=" md:col-span-4">
-                            <img src={barT} alt="" />
+                            <img src={barT} alt="splash-screen" />
                         </div>
                     </div>
                     <div ref={handRef} onClick={(e) => clickScroll(e)} style={{ transform: `rotate(${-180}deg)` }} className="hand-wrapper absolute cursor-pointer lg:fixed w-12 md:w-20 top-1/2 right-10">
                         <img src={hand} className="w-full filter drop-shadow-lg saturate-0 bouncy-hand transition-all" alt="illustration click to scroll" />
                     </div>
                 </div>
-                <div className="min-h-screen grid place-items-center bg-white outline-white py-20 px-0">
+                <div className="min-h-screen grid place-items-center bg-white py-20 px-0">
                     <div className="grid grid-cols-1 gap-y-8 md:grid-cols-6 md:gap-x-10 md:gap-y-0 md:w-10/12 max-w-7xl py-8 mx-auto">
                         
                         <div className="col-span-4">

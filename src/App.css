@@ -10,9 +10,9 @@ html {
     transition-duration: 300ms;
 }
 
-.splash-screen {
+/* .splash-screen {
     min-height: calc(100vh - 5rem);
-}
+} */
 
 .hand-wrapper:hover img {
     filter: saturate(0.8);
