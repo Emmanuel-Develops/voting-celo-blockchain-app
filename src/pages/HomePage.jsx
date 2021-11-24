@@ -35,7 +35,7 @@ const HomePage = () => {
 
     function handleNavDisplay(height, current, total) {
         if (Math.abs(lastSt-current) <= delta) return
-        console.log({current}, {total})
+        // console.log({current}, {total})
         if (current > lastSt && current > height) {
             setShowNav({height})
         } else {
