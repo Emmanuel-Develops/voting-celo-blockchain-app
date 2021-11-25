@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
+
+//resources
 import logo from '../assets/images/veto.png'
 import hand from '../assets/images/hand.png'
 import bar from '../assets/images/memoji-bar.png'
@@ -6,12 +8,16 @@ import barT from '../assets/images/memoji-bar1.png'
 import desktopImg from '../assets/images/iMac 24 inch.png'
 // import memojiBg from '../assets/images/bg-memoji.png'
 
+//components
+import NavBar from '../components/NavBar'
+
 const HomePage = () => {
 
     const [scrollUp, setScrollUp] = useState(false);
     const [showNav, setShowNav] = useState({});
+    const [headerHeight, setHeaderHeight] = useState()
 
-    const navHeading = useRef(null)
+    // const navHeading = useRef(null)
     const voteNow = useRef(null)
     const handRef = useRef(null)
     const splashScreen = useRef(null)
@@ -20,11 +26,12 @@ const HomePage = () => {
     let delta = 5
 
     const clickScroll = (e) => {
-        scrollUp ? splashScreen.current.scrollIntoView(true):voteNow.current.scrollIntoView(true)
-        console.log({scrollUp})
+        scrollUp ? splashScreen.current.scrollIntoView(true) :voteNow.current.scrollIntoView(true)
+        // console.log({scrollUp})
     }
 
     function handRotation(current, total) {
+        // console.log({current}, {total}, document.body.scrollTop, document.body.scrollHeight)
         handRef.current.style.transform = `rotate(${Math.round(current/total * 180 - 180) || 0}deg)`
         if (current / total > 0.5) {
             setScrollUp(true)
@@ -35,7 +42,6 @@ const HomePage = () => {
 
     function handleNavDisplay(height, current, total) {
         if (Math.abs(lastSt-current) <= delta) return
-        // console.log({current}, {total})
         if (current > lastSt && current > height) {
             setShowNav({height})
         } else {
@@ -61,15 +67,10 @@ const HomePage = () => {
                handleScroll()
                didScroll = false
            } 
-        }, 125)
+        }, 100)
         function handleScroll() {
             const scrollHeight = voteNow.current.offsetTop
             const scrollCurrent = window.scrollY
-            // console.log('final', scrollHeight)
-            // console.log('current', window.scrollY)
-            // console.log(Math.round(window.scrollY / scrollHeight * 360), 'deg')
-            // console.log(window.scrollHeight)
-
             handRotation(scrollCurrent, scrollHeight)
 
             handleNavDisplay(headerHeight, scrollCurrent, scrollHeight)
@@ -85,14 +86,7 @@ const HomePage = () => {
             <div className="fixed top-0 left-0 h-screen moving-bg -z-1">
                 {/* <div className="bg-gradient-to-br from-blue-400 bg-opacity-20 w-screen h-full"></div> */}
             </div>
-            <header ref={navHeading} style={{top: `-${showNav.height}px`}} className="fixed filter h-20 w-full z-10 header-nav">
-                <div className="flex items-center w-full md:w-10/12 2xl:w-8/12 py-2 mx-auto">
-                    <div className="logo w-10 sm:w-16 md:w-18">
-                        <img className="transform w-full h-full" src={logo} alt="veto logo" />
-                    </div>
-                    <p className="font-mw font-bold text-lg text-gray-400 mx-2">veto</p>
-                </div>
-            </header>
+            <NavBar height={headerHeight} setHeight={setHeaderHeight} showNav={showNav} logo={logo} />
             <main className="w-full bg-black bg-opacity-40">
                 <div ref={splashScreen} className="pt-20 min-h-screen flex items-center justify-center">
                     <div className="grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-2 md:w-10/12 max-w-7xl py-8 px-4 md:px-0 mx-auto">
