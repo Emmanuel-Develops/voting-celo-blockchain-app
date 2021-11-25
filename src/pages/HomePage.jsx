@@ -49,9 +49,10 @@ const HomePage = () => {
 
     useEffect(() => {
         // setPageHeight(voteNow.current.offsetTop)
-        window.addEventListener('scroll', () => { didScroll = true})
-        
+
+        window.addEventListener('scroll', () => { didScroll = true}) 
         let didScroll
+
         // let lastSt = 0
         // let delta = 5
         const headerHeight = navHeading.current.offsetHeight
@@ -62,6 +63,7 @@ const HomePage = () => {
                didScroll = false
            } 
         }, 125)
+
         function handleScroll() {
             const scrollHeight = voteNow.current.offsetTop
             const scrollCurrent = window.scrollY
