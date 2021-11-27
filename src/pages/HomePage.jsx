@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import logo from '../assets/images/veto.png'
 import hand from '../assets/images/hand.png'
 import bar from '../assets/images/memoji-bar.png'
@@ -15,6 +16,8 @@ const HomePage = () => {
     const voteNow = useRef(null)
     const handRef = useRef(null)
     const splashScreen = useRef(null)
+
+    const initialRender = useRef(true)
 
     let lastSt = 0
     let delta = 5
@@ -47,9 +50,15 @@ const HomePage = () => {
         lastSt = current
     }
 
+    async function getScrollHeight () {
+        const height = await voteNow.current.offsetTop
+        return height 
+    }
+
     useEffect(() => {
         // setPageHeight(voteNow.current.offsetTop)
 
+        if (!initialRender.current) return
         window.addEventListener('scroll', () => { didScroll = true}) 
         let didScroll
 
@@ -65,7 +74,7 @@ const HomePage = () => {
         }, 125)
 
         function handleScroll() {
-            const scrollHeight = voteNow.current.offsetTop
+            const scrollHeight = getScrollHeight()
             const scrollCurrent = window.scrollY
             // console.log('final', scrollHeight)
             // console.log('current', window.scrollY)
@@ -77,6 +86,8 @@ const HomePage = () => {
             handleNavDisplay(headerHeight, scrollCurrent, scrollHeight)
 
         }
+
+        initialRender.current = false
         
     }, [])
 
@@ -154,7 +165,7 @@ const HomePage = () => {
                     <div className="flex items-center md:w-10/12 max-w-7xl px-6 lg:px-12 py-8 mx-auto">
                         <div className="flex flex-col content-between vote-card md:w-1/3 2xl:1/4 h-quto bg-white p-10 rounded">
                             <p>Get&nbsp;Started</p>
-                            <button id="vote-now" className="font-genos text-3xl tracking-wider text-blue-200 uppercase font-bold bg-blue-400 rounded-md py-2 px-6 hover:bg-blue-600 transform hover:-translate-y-1 filter drop-shadow-lg">Vote</button>
+                            <Link to={'/dashboard'} id="vote-now" className="font-genos text-3xl tracking-wider text-blue-200 uppercase font-bold bg-blue-400 rounded-md py-2 px-6 hover:bg-blue-600 transform hover:-translate-y-1 filter drop-shadow-lg">Vote</Link>
                         </div>
                     </div>
                 </div>
