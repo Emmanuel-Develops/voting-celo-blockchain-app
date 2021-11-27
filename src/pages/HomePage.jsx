@@ -11,74 +11,47 @@ import desktopImg from '../assets/images/iMac 24 inch.png'
 //components
 import NavBar from '../components/NavBar'
 
+//hook
+import { useScroll } from '../hooks/useScroll'
+
 const HomePage = () => {
 
-    const [scrollUp, setScrollUp] = useState(false);
-    const [showNav, setShowNav] = useState({});
-    const [headerHeight, setHeaderHeight] = useState()
+    // const [scrollUp, setScrollUp] = useState(false);
+    const [headerHeight, setHeaderHeight] = useState(0)
+    const [maxScrollable, setMaxScrollable] = useState(0)
 
     // const navHeading = useRef(null)
     const voteNow = useRef(null)
     const handRef = useRef(null)
     const splashScreen = useRef(null)
 
-    let lastSt = 0
-    let delta = 5
-
-    const clickScroll = (e) => {
-        scrollUp ? splashScreen.current.scrollIntoView(true) :voteNow.current.scrollIntoView(true)
-        // console.log({scrollUp})
+    const getHeight = async () =>  {
+       const hh = await voteNow.current.offsetTop
+       setMaxScrollable(hh)
     }
-
-    function handRotation(current, total) {
-        // console.log({current}, {total}, document.body.scrollTop, document.body.scrollHeight)
-        handRef.current.style.transform = `rotate(${Math.round(current/total * 180 - 180) || 0}deg)`
-        if (current / total > 0.5) {
-            setScrollUp(true)
-        } else {
-            setScrollUp(false)
-        }
-    }
-
-    function handleNavDisplay(height, current, total) {
-        if (Math.abs(lastSt-current) <= delta) return
-        if (current > lastSt && current > height) {
-            setShowNav({height})
-        } else {
-            if (current < total) {
-                setShowNav({height: 0})
-            }
-        }
-
-        lastSt = current
-    }
+    
+    const [showNav, didScroll] = useScroll(maxScrollable, headerHeight)
 
     useEffect(() => {
-        // setPageHeight(voteNow.current.offsetTop)
-        window.addEventListener('scroll', () => { didScroll = true})
-        
-        let didScroll
-        // let lastSt = 0
-        // let delta = 5
-        const headerHeight = navHeading.current.offsetHeight
+        getHeight()
+    }, [didScroll])
 
-        setInterval(() => {
-           if (didScroll) {
-               handleScroll()
-               didScroll = false
-           } 
-        }, 100)
-        function handleScroll() {
-            const scrollHeight = voteNow.current.offsetTop
-            const scrollCurrent = window.scrollY
-            handRotation(scrollCurrent, scrollHeight)
+    
+    
 
-            handleNavDisplay(headerHeight, scrollCurrent, scrollHeight)
+    // const clickScroll = (e) => {
+    //     scrollUp ? splashScreen.current.scrollIntoView(true) :voteNow.current.scrollIntoView(true)
+    // }
 
-        }
-        
-    }, [])
-
+    // function handRotation(current, total) {
+    //     // console.log({current}, {total}, document.body.scrollTop, document.body.scrollHeight)
+    //     handRef.current.style.transform = `rotate(${Math.round(current/total * 180 - 180) || 0}deg)`
+    //     if (current / total > 0.5) {
+    //         setScrollUp(true)
+    //     } else {
+    //         setScrollUp(false)
+    //     }
+    // }
 
     return (
         <div className="w-100">
@@ -86,7 +59,7 @@ const HomePage = () => {
             <div className="fixed top-0 left-0 h-screen moving-bg -z-1">
                 {/* <div className="bg-gradient-to-br from-blue-400 bg-opacity-20 w-screen h-full"></div> */}
             </div>
-            <NavBar height={headerHeight} setHeight={setHeaderHeight} showNav={showNav} logo={logo} />
+            <NavBar setHeight={setHeaderHeight} navState={showNav} logo={logo} />
             <main className="w-full bg-black bg-opacity-40">
                 <div ref={splashScreen} className="pt-20 min-h-screen flex items-center justify-center">
                     <div className="grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-2 md:w-10/12 max-w-7xl py-8 px-4 md:px-0 mx-auto">
@@ -100,9 +73,9 @@ const HomePage = () => {
                             <img src={barT} alt="splash-screen" />
                         </div>
                     </div>
-                    <div ref={handRef} onClick={(e) => clickScroll(e)} style={{ transform: `rotate(${-180}deg)` }} className="hand-wrapper absolute cursor-pointer lg:fixed w-12 md:w-20 top-1/2 right-10">
+                    {/* <div ref={handRef} onClick={(e) => clickScroll(e)} style={{ transform: `rotate(${-180}deg)` }} className="hand-wrapper absolute cursor-pointer lg:fixed w-12 md:w-20 top-1/2 right-10">
                         <img src={hand} className="w-full filter drop-shadow-lg saturate-0 bouncy-hand transition-all" alt="illustration click to scroll" />
-                    </div>
+                    </div> */}
                 </div>
                 <div className="min-h-screen grid place-items-center bg-white py-20 px-0">
                     <div className="grid grid-cols-1 gap-y-8 md:grid-cols-6 md:gap-x-10 md:gap-y-0 md:w-10/12 max-w-7xl py-8 mx-auto">
@@ -155,7 +128,7 @@ const HomePage = () => {
 
         </div>
     )
-}
+                }
 
 export default HomePage
 

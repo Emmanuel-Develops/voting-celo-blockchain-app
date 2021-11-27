@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 
-export const useScroll = ({ lastScrolledElement, headerHeight }) => {
+export const useScroll = (maxScrollable, headerHeight) => {
+
 
     let lastSt = 0
     let delta = 5
 
-    const [scrollUp, setScrollUp] = useState(false);
-    const [showNav, setShowNav] = useState({});
-    const [scrollHeight, setScrollHeight] = useState(0);
-    const [scrollCurrent, setScrollCurrent] = useState(0);
+    // const [scrollUp, setScrollUp] = useState(false);
+    const [showNav, setShowNav] = useState({height: 0});
+    const [didScroll, setDidScroll] = useState(false);
 
-    export function handleNavDisplay(height, current=scrollCurrent, total=scrollHeight) {
+    function handleNavDisplay(height, current, total) {
         if (Math.abs(lastSt-current) <= delta) return
         // if youre scrolling downwards move the navbar upwards by the 'height' value
         if (current > lastSt && current > height) {
@@ -28,28 +28,27 @@ export const useScroll = ({ lastScrolledElement, headerHeight }) => {
 
     function handleScroll() {
         const current = window.scrollY
-        setScrollCurrent(current)
-        
+        console.log({maxScrollable, headerHeight, current, showNav})
         // handRotation(scrollCurrent, scrollHeight)
-        // handleNavDisplay(headerHeight, scrollCurrent, scrollHeight)
+        handleNavDisplay(headerHeight, current, maxScrollable)
     }
 
-    useEffect(() => {
-        window.addEventListener('scroll', () => { didScroll = true})
+    useEffect(async () => {
+        window.addEventListener('scroll', () => { setDidScroll(true)})
         
-        let didScroll
-        const height = lastScrolledElement.current.offsetTop
-        setScrollHeight(height)
+        // let didScroll
 
         setInterval(() => {
            if (didScroll) {
                handleScroll()
-               didScroll = false
+               setDidScroll(false)
            } 
-        }, 100)        
+        }, 100)
+        
+        return () => clearInterval()
     }, [])
 
-    return { scrollUp, showNav, scrollHeight, scrollCurrent }
+    return [didScroll, showNav]
 }
 
 
