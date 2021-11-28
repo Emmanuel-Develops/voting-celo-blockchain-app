@@ -1,14 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-export const useScroll = (maxScrollable, headerHeight) => {
+export const useScroll = () => {   
 
+    const [deg, setDeg] = useState(180)
+    const [scrollUp, setScrollUp] = useState(false);
+    // const [headerHeight, setHeaderHeight] = useState(0);
+    const [showNav, setShowNav] = useState({height: 0});
+
+    // const navHeight = useCallback(node => {
+    //     if (node == null) return
+    //     console.log(node.offsetHeight)
+    // }, [])
 
     let lastSt = 0
     let delta = 5
-
-    // const [scrollUp, setScrollUp] = useState(false);
-    const [showNav, setShowNav] = useState({height: 0});
-    const [didScroll, setDidScroll] = useState(false);
+    let headerHeight = 80
+    
 
     function handleNavDisplay(height, current, total) {
         if (Math.abs(lastSt-current) <= delta) return
@@ -17,38 +24,51 @@ export const useScroll = (maxScrollable, headerHeight) => {
             setShowNav({height})
         } 
         // if youre scrolling upwards bring the navbar back into view by resetting 'height'
-        else {
-            if (current < total) {
-                setShowNav({height: 0})
-            }
+        else if (current < total) {
+            setShowNav({height: 0})
         }
+        console.log({headerHeight, current, total}) 
 
         lastSt = current
     }
 
-    function handleScroll() {
-        const current = window.scrollY
-        console.log({maxScrollable, headerHeight, current, showNav})
-        // handRotation(scrollCurrent, scrollHeight)
-        handleNavDisplay(headerHeight, current, maxScrollable)
+    function handRotation(current, total) {
+        setDeg(Math.round(current/total * 180 - 180) || 0)
+    }
+
+    function handleScroll(totalHeight) {
+        let current = window.scrollY
+        console.log(headerHeight)
+
+        current/totalHeight > 0.5 ? setScrollUp(true) : setScrollUp(false)
+        handRotation(current, totalHeight)
+        handleNavDisplay(headerHeight, current, totalHeight)
     }
 
     useEffect(async () => {
-        window.addEventListener('scroll', () => { setDidScroll(true)})
+        let didScroll
+        let totalHeight
+
+        window.addEventListener('scroll', () => { 
+            didScroll = true
+            const bodyHeight = document.body.offsetHeight
+            const winHeight = window.innerHeight
+            totalHeight = bodyHeight - winHeight
+            return totalHeight
+        })
         
-        // let didScroll
 
         setInterval(() => {
            if (didScroll) {
-               handleScroll()
-               setDidScroll(false)
+               handleScroll(totalHeight)
+               didScroll = false
            } 
-        }, 100)
+        }, 175)
         
         return () => clearInterval()
-    }, [])
+    }, [scrollUp])
 
-    return [didScroll, showNav]
+    return [showNav, deg, scrollUp]
 }
 
 

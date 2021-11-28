@@ -1,18 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
-import { useScroll } from '../hooks/useScroll';
 
 const NavBar = ({setHeight, navState, logo}) => {
 
-    const navHeading = useRef(null)
-
-     
-    useEffect(() => {
-        const headerHeight = navHeading.current.offsetHeight
-        setHeight(headerHeight)    
-    }, [])
-
     return (
-        <header ref={navHeading} style={{top: `${navState.height}px`}} className="fixed h-20 w-full z-10 header-nav">
+        <header style={{top: `-${navState.height}px`}} className="fixed h-20 w-full z-10 header-nav">
             <div className="h-full w-full flex items-center md:w-10/12 2xl:w-8/12 py-2 mx-auto ">
                 <div className="logo w-10 sm:w-16 md:w-18">
                     <img className="transform w-full h-full" src={logo} alt="veto logo" />
