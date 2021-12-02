@@ -4,7 +4,7 @@ html {
 }
 
 .header-nav {
-    background-color: black;
+    background-color: rgba(26, 46, 66, 0.9);
     transition-property: top;
     transition-timing-function: ease-in;
     transition-duration: 300ms;

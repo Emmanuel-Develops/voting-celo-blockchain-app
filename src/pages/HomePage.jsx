@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 
 //resources
-import logo from "../assets/images/veto.png";
 import hand from "../assets/images/hand.png";
 import barT from "../assets/images/memoji-bar1.png";
 import desktopImg from "../assets/images/iMac 24 inch.png";
@@ -20,7 +20,7 @@ const HomePage = () => {
   const handRef = useRef(null);
   const splashScreen = useRef(null);
 
-  const [showNav, deg, scrollUp, navHeight] = useScroll();
+  const [showNav, deg, scrollUp] = useScroll();
 
   const clickScroll = (e) => {
     scrollUp ? splashScreen.current.scrollIntoView(true) : voteNow.current.scrollIntoView(true);
@@ -32,8 +32,8 @@ const HomePage = () => {
       <div className="fixed top-0 left-0 h-screen moving-bg -z-1">
         {/* <div className="bg-gradient-to-br from-blue-400 bg-opacity-20 w-screen h-full"></div> */}
       </div>
-      <NavBar navState={showNav} logo={logo} />
-      <main ref={navHeight} className="w-full bg-black bg-opacity-40">
+      <NavBar navState={showNav} />
+      <main className="w-full bg-black bg-opacity-40">
         <div ref={splashScreen} className="pt-20 min-h-screen flex items-center justify-center">
           <div className="grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-2 md:w-10/12 max-w-7xl py-8 px-4 md:px-0 mx-auto">
             <div className="intro  md:col-span-2">
@@ -150,12 +150,12 @@ const HomePage = () => {
           <div className="flex items-center md:w-10/12 max-w-7xl px-6 lg:px-12 py-8 mx-auto">
             <div className="flex flex-col content-between vote-card md:w-1/3 2xl:1/4 h-quto bg-white p-10 rounded">
               <p>Get&nbsp;Started</p>
-              <button
+              <Link to={"/dashboard"}
                 id="vote-now"
                 className="font-genos text-3xl tracking-wider text-blue-200 uppercase font-bold bg-blue-400 rounded-md py-2 px-6 hover:bg-blue-600 transform hover:-translate-y-1 filter drop-shadow-lg"
               >
                 Vote
-              </button>
+              </Link>
             </div>
           </div>
         </div>
