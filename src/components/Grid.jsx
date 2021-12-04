@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getProjects } from '../data'
+import ButtonRoute from './ButtonRoute'
 
 function Grid() {
 
@@ -16,38 +17,38 @@ function Grid() {
     return (
 
         projects ? 
-        <section className="grid my-5 grid-cols-1 gap-4 lg:grid-cols-2">
+        <section className="grid my-5 grid-cols-1 gap-4 lg:gap-10 lg:grid-cols-2">
             {projects.map((project) => 
-                <div key={project.index} className="flex font-genos text-gray-800 md:text-xl font-medium shadow-lg rounded-lg bg-black bg-opacity-20">
-                    <div className='bg-blue-300 px-2 py-1 w-1/2 font-bold rounded-l-lg'>
+                <div key={project.index} className="flex flex-col md:flex-row justify-items-stretch font-bc text-white md:text-xl font-medium shadow-2xl rounded-xl bg-gray-800">
+                    <div className='bg-gray-100 text-black text2xl md:text-3xl p-2 md:p-4  md:w-1/2 font-bold rounded-t-xl md:rounded-l-xl'>
                         {project.name}
                     </div>
-                    <div className="p-3 rounded-r-lg" style={{ minWidth: '200px', maxWidth: '50%' }}>
+                    <div className="p-5 rounded-r-lg h-100 text-md md:text-lg md:w-100">
                         <div className="">
-                            <h3 className="font-bold text-sm">INFO</h3>
-                            <p className="font-genos text-xl">{project.info}</p>
+                            <p className="font-bold text-sm opacity-60 mb-6">INFO</p>
+                            <p className="mb-6 md:mb-10 text-md md:text-lg">{project.info}</p>
                         </div>
 
                         {/* <div className="w-90 bg-red-400 h-1 rounded opacity-60 my-5"></div> */}
                         
-                        <div className="flex justify-between items-center mb-4 bg-gray-700 rounded pl-2">
-                            <div className="text-white">Entry: ${project.costToEntry}</div>
+                        <div className="flex justify-between items-center mb-4 bg-gray-700 bg-opacity-80 rounded pl-2">
+                            <div className="">Entry: ${project.costToEntry}</div>
                             <div className="bg-blue-400 px-2 py-2 rounded-r">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-solid fa-user w-5"></i>
                                 <span className="ml-2">{project.contestants.length}</span>
                             </div>
                         </div>
                         
-                        <div className="flex justify-between items-center mb-4 bg-gray-700 rounded pl-2">
-                            <div className="text-white">Voting: ${project.costToVote}</div>
+                        <div className="flex justify-between items-center mb-10 bg-gray-700 bg-opacity-80 rounded pl-2">
+                            <div className="">Voting: ${project.costToVote}</div>
                             <div className="bg-blue-400 px-2 py-2 rounded-r">
-                                <i class="fa-solid fa-check-to-slot"></i>
+                                <i class="fa-solid fa-check-to-slot w-5"></i>
                                 <span className="ml-2">{project.contestants.reduce((a,b) => a + b.votes, 0)}</span>
                             </div>
                         </div>
 
-                        <div className="grid place-items-center">
-                            <button>Open</button>
+                        <div className="grid place-items-center h-100 relative bottom-0">
+                            <ButtonRoute route={`dashboard/${project.index}`} id={project.index} text={'OPEN'} />
                         </div>
                     
                     </div>
