@@ -1,47 +1,62 @@
 
 export const products = [
     {
-      name: "Giant BBQ",
-      image: "https://i.imgur.com/yPreV19.png",
-      description: `Grilled chicken, beef, fish, sausages, bacon, 
-        vegetables served with chips.`,
-      location: "Kimironko Market",
-      owner: "0x32Be343B94f860124dC4fEe278FDCBD38C102D88",
-      price: 3,
-      sold: 27,
       index: 0,
+      creator: "0x32Be343B94f860124dC4fEe278FDCBD38C102D88",
+      name: "Non-Profit Project Fund (NPPF)",
+      info: "We will provide liquidity to the most voted non-profit project",
+      exists: true,
+      maxC: 10,
+      costToEntry: 0,
+      costToVote: 10,
+      contestants: [
+        {
+          index: 0,
+          owner: "0x32Be343B94f860124dC4fEe278FDCBD38C102D88",
+          name: "#TEAMSeas",
+          info: "Cleaning the ocean",
+          votes: 2
+        },
+        {
+          index: 1,
+          owner: "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
+          name: "#SafeSex Awareness",
+          info: "Creating awareness",
+          votes: 3
+        },
+      ]
     },
     {
-      name: "BBQ Chicken",
-      image: "https://i.imgur.com/NMEzoYb.png",
-      description: `French fries and grilled chicken served with gacumbari 
-        and avocados with cheese.`,
-      location: "Afrika Fresh KG 541 St",
-      owner: "0x3275B7F400cCdeBeDaf0D8A9a7C8C1aBE2d747Ea",
-      price: 4,
-      sold: 12,
       index: 1,
-    },
-    {
-      name: "Beef burrito",
-      image: "https://i.imgur.com/RNlv3S6.png",
-      description: `Homemade tortilla with your choice of filling, cheese, 
-        guacamole salsa with Mexican refried beans and rice.`,
-      location: "Asili - KN 4 St",
-      owner: "0x2EF48F32eB0AEB90778A2170a0558A941b72BFFb",
-      price: 2,
-      sold: 35,
-      index: 2,
-    },
-    {
-      name: "Barbecue Pizza",
-      image: "https://i.imgur.com/fpiDeFd.png",
-      description: `Barbecue Chicken Pizza: Chicken, gouda, pineapple, onions 
-        and house-made BBQ sauce.`,
-      location: "Kigali Hut KG 7 Ave",
-      owner: "0x2EF48F32eB0AEB90778A2170a0558A941b72BFFb",
-      price: 1,
-      sold: 2,
-      index: 3,
+      creator: "0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB",
+      name: "ERTE: Local Artists Awards",
+      info: "Do you have a recognizable brand as a local artist, make an entry and stand a chance to gain more exposure",
+      exists: true,
+      maxC: 15,
+      costToEntry: 0,
+      costToVote: 0,
+      contestants: [
+        {
+          index: 0,
+          owner: "0x32Be343B94f860124dC4fEe278FDCBD38C102D88",
+          name: "vokalZ",
+          info: "A young and budding artist from Port Harcourt",
+          votes: 5
+        },
+        {
+          index: 1,
+          owner: "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
+          name: "remi",
+          info: "I'm remi and i'm going places that's for sure",
+          votes: 2
+        },
+        {
+          index: 2,
+          owner: "0x17F6AD8Ef982297579C203069C1DbfFE4348c372",
+          name: "tundra",
+          info: "Cold af like your wallet if you don't vote me",
+          votes: 10
+        }
+      ]
     },
 ]
