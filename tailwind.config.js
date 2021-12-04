@@ -17,6 +17,9 @@ module.exports = {
 
     fontFamily: {
       'genos': ['Genos', 'sans-serif'],
+      'roboto': ['Roboto', 'sans-serif'],
+      'osans': ['Open sans', 'sans-serif'],
+      'bc': ['Barlow Condensed', 'sans-serif'],
       'mw': ['"Merriweather"', 'serif'],
     },
     extend: {

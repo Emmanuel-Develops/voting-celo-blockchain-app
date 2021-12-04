@@ -13,7 +13,7 @@ export const useScroll = () => {
     // }, [])
 
     let lastSt = 0
-    let delta = 5
+    let delta = 70
     let headerHeight = 80
     
 
@@ -27,7 +27,6 @@ export const useScroll = () => {
         else if (current < total) {
             setShowNav({height: 0})
         }
-        console.log({headerHeight, current, total}) 
 
         lastSt = current
     }
@@ -38,7 +37,6 @@ export const useScroll = () => {
 
     function handleScroll(totalHeight) {
         let current = window.scrollY
-        console.log(headerHeight)
 
         current/totalHeight > 0.5 ? setScrollUp(true) : setScrollUp(false)
         handRotation(current, totalHeight)
@@ -54,18 +52,19 @@ export const useScroll = () => {
             const bodyHeight = document.body.offsetHeight
             const winHeight = window.innerHeight
             totalHeight = bodyHeight - winHeight
+            handleScroll(totalHeight)
             return totalHeight
         })
         
 
-        setInterval(() => {
-           if (didScroll) {
-               handleScroll(totalHeight)
-               didScroll = false
-           } 
-        }, 175)
+        // setInterval(() => {
+        //    if (didScroll) {
+        //        handleScroll(totalHeight)
+        //        didScroll = false
+        //    } 
+        // }, 125)
         
-        return () => clearInterval()
+        // return () => clearInterval()
     }, [scrollUp])
 
     return [showNav, deg, scrollUp]

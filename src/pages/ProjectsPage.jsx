@@ -1,4 +1,5 @@
 import NavBar from "../components/NavBar";
+import Grid from "../components/Grid";
 import { useScroll } from "../hooks/useScroll";
 
 const ProjectsPage = () => {
@@ -12,7 +13,8 @@ const ProjectsPage = () => {
         <h2 className="text-2xl md:text-4xl lg:text-5xl text-blue-400 font-bold leading-relaxed tracking-wide">
         Avaliable Projects
         </h2>
-        
+
+        <Grid />
       </div>
     </div>
   );

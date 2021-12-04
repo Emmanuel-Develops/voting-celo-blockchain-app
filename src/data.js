@@ -1,5 +1,5 @@
 
-export const products = [
+const projects = [
     {
       index: 0,
       creator: "0x32Be343B94f860124dC4fEe278FDCBD38C102D88",
@@ -24,6 +24,7 @@ export const products = [
           info: "Creating awareness",
           votes: 3
         },
+        
       ]
     },
     {
@@ -56,7 +57,10 @@ export const products = [
           name: "tundra",
           info: "Cold af like your wallet if you don't vote me",
           votes: 10
-        }
+        },
       ]
     },
 ]
+
+
+export const getProjects = () => projects

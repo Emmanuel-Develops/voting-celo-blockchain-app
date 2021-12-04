@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
 
 //resources
 import hand from "../assets/images/hand.png";
@@ -9,6 +8,7 @@ import desktopImg from "../assets/images/iMac 24 inch.png";
 
 //components
 import NavBar from "../components/NavBar";
+import ButtonRoute from "../components/ButtonRoute";
 
 //hook
 import { useScroll } from "../hooks/useScroll";
@@ -148,14 +148,9 @@ const HomePage = () => {
 
         <div ref={voteNow} className="min-h-screen flex items-center justify-center">
           <div className="flex items-center md:w-10/12 max-w-7xl px-6 lg:px-12 py-8 mx-auto">
-            <div className="flex flex-col content-between vote-card md:w-1/3 2xl:1/4 h-quto bg-white p-10 rounded">
+            <div className="flex flex-col content-between vote-card md:w-1/3 2xl:1/4 h-auto bg-white p-10 rounded">
               <p>Get&nbsp;Started</p>
-              <Link to={"/dashboard"}
-                id="vote-now"
-                className="font-genos text-3xl tracking-wider text-blue-200 uppercase font-bold bg-blue-400 rounded-md py-2 px-6 hover:bg-blue-600 transform hover:-translate-y-1 filter drop-shadow-lg"
-              >
-                Vote
-              </Link>
+              <ButtonRoute route={'dashboard'} text={'Projects'} id={'vote-now'}/>
             </div>
           </div>
         </div>
