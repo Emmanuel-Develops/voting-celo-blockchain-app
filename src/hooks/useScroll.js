@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 
 export const useScroll = () => {   
 
@@ -43,29 +43,32 @@ export const useScroll = () => {
         handleNavDisplay(headerHeight, current, totalHeight)
     }
 
-    useEffect(async () => {
+    useLayoutEffect(() => {
         let didScroll
-        let totalHeight
+        // let totalHeight
+        const bodyHeight = document.body.offsetHeight
+        const winHeight = window.innerHeight
+        const totalHeight = bodyHeight - winHeight
 
         window.addEventListener('scroll', () => { 
             didScroll = true
-            const bodyHeight = document.body.offsetHeight
-            const winHeight = window.innerHeight
-            totalHeight = bodyHeight - winHeight
-            handleScroll(totalHeight)
-            return totalHeight
+            
+            // handleScroll(totalHeight)
         })
         
 
-        // setInterval(() => {
-        //    if (didScroll) {
-        //        handleScroll(totalHeight)
-        //        didScroll = false
-        //    } 
-        // }, 125)
-        
-        // return () => clearInterval()
-    }, [scrollUp])
+        setInterval(() => {
+           if (didScroll) {
+               handleScroll(totalHeight)
+               didScroll = false
+           } 
+        }, 125)
+
+        return () => {
+            clearInterval();
+            window.removeEventListener('scroll', () => didScroll = false);
+        }
+    }, [])
 
     return [showNav, deg, scrollUp]
 }

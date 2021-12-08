@@ -61,22 +61,22 @@ const HomePage = () => {
             />
           </div>
         </div>
-        <div className="min-h-screen grid place-items-center bg-white py-20 px-0">
-          <div className="grid grid-cols-1 gap-y-8 md:grid-cols-6 md:gap-x-10 md:gap-y-0 md:w-10/12 max-w-7xl py-8 mx-auto">
+        <div className="min-h-screen grid place-items-center bg-white py-16 px-0">
+          <div className="grid grid-cols-1 gap-y-8 md:grid-cols-6 md:gap-x-10 md:gap-y-24 md:w-10/12 max-w-7xl py-8 mx-auto">
             <div className="col-span-4">
               <h2 className="font-genos text-3xl md:text-4xl text-yellow-800 tracking-wide capitalize ">
                 what is veto?
               </h2>
               <p className="font-genos text-black-300 text-lg md:text-2xl pt-5">
-                Veto is a decentralised app built on the celo blockchain
+                Veto is a decentralised app built on the celo blockchain.
               </p>
               <p className="font-genos text-black-300 text-lg md:text-2xl pt-5">
                 Its primary objective is to provide a platform to vote on various matters. Do you
                 need to vote between contestants for a beauty brand event?... Try veto.
               </p>
               <p className="font-genos text-black-300 text-lg md:text-2xl pt-5">
-                Users can create their own issues to vote on and anyone can create an object that
-                can be voted for regarding the issue
+                Users can create their projects to vote on and create propositions that
+                can be voted for regarding the project.
               </p>
             </div>
             <div className="w-full col-span-2">
@@ -102,7 +102,7 @@ const HomePage = () => {
             </div>
 
             <div className="col-span-4">
-              <h2 className="font-genos text-3xl md:text-4xl text-yellow-800 tracking-wide capitalize mt-5 lg:mt-10">
+              <h2 className="font-genos text-3xl md:text-4xl text-yellow-800 tracking-wide capitalize">
                 why veto?
               </h2>
               <p className="font-genos text-black-300 text-lg md:text-2xl pt-5">
@@ -112,14 +112,14 @@ const HomePage = () => {
             </div>
 
             <div className="col-span-4">
-              <h2 className="font-genos text-3xl md:text-4xl text-yellow-800 tracking-wide capitalize mt-5 lg:mt-10">
+              <h2 className="font-genos text-3xl md:text-4xl text-yellow-800 tracking-wide capitalize">
                 How to get Started?
               </h2>
               <p className="font-genos text-black-300 text-lg md:text-2xl pt-5">
                 You'll need a celo extension wallet to interact with the app. Create an acoout (It's
                 really easy and straightforward very similar to metamask, then change the network
                 at the top-right of the extension
-                <span className="text-yellow-400 bg-blue-800 rounded px-2">
+                <span className="text-yellow-400 bg-blue-800 rounded px-2 mx-2">
                   Alfajores-Test network
                 </span>
               </p>
@@ -129,9 +129,7 @@ const HomePage = () => {
                   href="https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en"
                   target="_blank"
                   className="inline text-blue-800"
-                >
-        
-                  celo wallet chrome extension
+                > celo wallet chrome extension.
                 </a>
               </span>
               <p className="font-genos text-black-300 text-lg md:text-2xl pt-5">
@@ -147,8 +145,8 @@ const HomePage = () => {
         </div>
 
         <div ref={voteNow} className="min-h-screen flex items-center justify-center">
-          <div className="flex items-center md:w-10/12 max-w-7xl px-6 lg:px-12 py-8 mx-auto">
-            <div className="flex flex-col content-between vote-card md:w-1/3 2xl:1/4 h-auto bg-white p-10 rounded">
+          <div className="flex justify-center md:w-10/12 max-w-7xl px-6 lg:px-12 py-8 mx-auto ">
+            <div className="flex flex-col content-between vote-card md:w-1/3 2xl:1/4 h-auto bg-white p-10 rounded ">
               <p>Get&nbsp;Started</p>
               <ButtonRoute route={'dashboard'} text={'Projects'} id={'vote-now'}/>
             </div>

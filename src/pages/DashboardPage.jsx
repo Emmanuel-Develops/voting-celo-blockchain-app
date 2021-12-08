@@ -1,8 +1,10 @@
+import { Outlet } from "react-router";
+
 import NavBar from "../components/NavBar";
 import Grid from "../components/Grid";
 import { useScroll } from "../hooks/useScroll";
 
-const ProjectsPage = () => {
+const DashboardPage = () => {
   const [showNav] = useScroll();
 
   return (
@@ -15,9 +17,11 @@ const ProjectsPage = () => {
         </h2>
 
         <Grid />
+        <Outlet/>
+
       </div>
     </div>
   );
 };
 
-export default ProjectsPage;
+export default DashboardPage;
