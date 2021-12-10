@@ -128,6 +128,7 @@ const HomePage = () => {
                 <a
                   href="https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en"
                   target="_blank"
+                  rel="noreferrer"
                   className="inline text-blue-800"
                 > celo wallet chrome extension.
                 </a>

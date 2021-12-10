@@ -34,7 +34,7 @@ const ProjectCard = ({project}) => {
                 </div>
 
                 <div className="grid place-items-center h-100 relative top">
-                    <ButtonRoute route={`dashboard/${project.index}`} id={project.index} text={'OPEN'} />
+                    <ButtonRoute route={`dashboard/${project.name}`} id={project.index} text={'OPEN'} />
                 </div>
             
             </div>

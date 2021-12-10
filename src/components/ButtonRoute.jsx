@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { ReactPropTypes } from "react";
 
 const ButtonRoute = ({route, id, text, stateData}) => {
     return (
