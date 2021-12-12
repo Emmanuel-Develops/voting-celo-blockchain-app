@@ -9,16 +9,20 @@ function Grid() {
     // const projects = context.state
     const initialState = context.state
     const [projects, setProjects] = useState(initialState)
-    const [searchTerm, setSearchTerm] = useState("")
-
-    const updateSearchTerm = (search) => {
-        setSearchTerm(search)
-    }
-  
+    const [searchTerm, setSearchTerm] = useState("")  
 
     useEffect(() => {
 
+        const timer = setTimeout(() => {
+            updateProjects(searchTerm)
+        }, 500);
+        
         const updateProjects = (searchTerm) => {
+
+            if (searchTerm == "") {
+                return setProjects(initialState)
+            }
+
             const results = initialState.filter((project) => {
                 return project.name.toLowerCase().includes(searchTerm.toLowerCase())
             })
@@ -26,17 +30,13 @@ function Grid() {
             setProjects(results)
         }
 
-        setTimeout(() => {
-            updateProjects(searchTerm)
-        }, 500);
-
-        return clearTimeout()
+        return () => clearTimeout(timer)
     }, [searchTerm])
 
 
     return (
         <>
-            <DashboardHeading heading={"Available Projects"} searchTerm={searchTerm} update={updateSearchTerm} />
+            <DashboardHeading heading={"Available Projects"} searchTerm={searchTerm} update={setSearchTerm} />
             {projects ? 
             <section className="grid my-5 grid-cols-1 gap-4 lg:gap-10 lg:grid-cols-2">
                 {projects.map((project) => 
