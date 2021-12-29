@@ -5,17 +5,26 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import DashboardPage from './pages/DashboardPage';
 import ProjectPage from './pages/ProjectPage';
+import Grid from './components/Grid';
+import TestPage from './pages/TestPage';
+
+import { DashboardContextProvider } from './state/projects-context'
 
 function App() {
+
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='dashboard' element={<DashboardPage />}> 
-          <Route path=":projectIndex" element={<ProjectPage />} />
-        </Route>
-      </Routes>
-    </Router>
+    <DashboardContextProvider>
+      <Router>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+            <Route path='dashboard' element={<DashboardPage />}>
+              <Route index element={<Grid/>} />
+              <Route path=":projectIndex" element={<ProjectPage />} />
+            </Route>
+            <Route path="/test" element={<TestPage />} />
+        </Routes>
+      </Router>
+    </DashboardContextProvider>
   );
 }
 

@@ -4,7 +4,7 @@ import ButtonRoute from './ButtonRoute'
 const ProjectCard = ({project}) => {
     return (
         <div className="flex flex-col md:flex-row justify-items-stretch font-osans text-white md:text-xl font-medium shadow-2xl rounded-xl bg-gray-800">
-            <div className='p-3 text-gray-200 text2xl md:text-3xl p-2 md:p-4 font-bold sm:rounded-t-xl md:rounded-none md:rounded-l-xl md:w-2/5 bg-blue-200 bg-opacity-20'>
+            <div className='p-3 text-gray-200 text2xl md:text-3xl md:p-4 font-bold sm:rounded-t-xl md:rounded-none md:rounded-l-xl md:w-2/5 bg-blue-200 bg-opacity-20'>
                 <div className="h-full">
                     {project.name}
                 </div>
@@ -34,7 +34,7 @@ const ProjectCard = ({project}) => {
                 </div>
 
                 <div className="grid place-items-center h-100 relative top">
-                    <ButtonRoute route={`dashboard/${project.index}`} id={project.index} text={'OPEN'} />
+                    <ButtonRoute route={`dashboard/${project.name}`} id={project.index} text={'OPEN'} />
                 </div>
             
             </div>

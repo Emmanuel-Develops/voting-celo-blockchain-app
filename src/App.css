@@ -57,10 +57,36 @@ html {
     animation: bouncyHand 3s ease-in-out infinite;
 }
 
-.scroll-snap-child {
-    /* position: relative; */
-    scroll-snap-align: start;
-}
+.search-bar {
+    position: relative;
+    width: 100%;
+    /* height: 40px; */
+    max-width: 400px;
+    min-width: 100px;
+  }
+
+.search-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    z-index: 1;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    fill: #9aa0a6;
+  }
+
+  .search-input {
+    position: absolute;
+    display: block;
+    padding: 0 46px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #dfe1e5;
+    border-radius: 25px;
+    font-size: 0.75rem;
+  }
+  
 
 @keyframes vetoFlick {
     40% {
