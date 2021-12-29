@@ -1,3 +1,4 @@
+import userEvent from '@testing-library/user-event';
 import { useState, useContext } from 'react'
 
 import { useLocation, useParams } from "react-router"
@@ -16,11 +17,20 @@ const ProjectPage = ({index}) => {
     const initialState = context.state
     const [project, setProject] = useState(initialState)
     const [searchTerm, setSearchTerm] = useState("")
+
+    const updateState = () => {
+        console.log('clicked')
+        context.setState({test: 'testing'})
+    }
+
+
     return (
         <>
             <DashboardHeading heading={params.projectIndex} searchTerm={searchTerm} update={setSearchTerm} />
             <div>
                 The project number should be here ---- {params.projectIndex}
+
+                <button onClick={() => updateState()}>Set new globalstate</button>
             </div>
         </>
     )
